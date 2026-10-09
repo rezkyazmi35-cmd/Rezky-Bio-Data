@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezky | Website</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #080b16;
+    --card: #11182a;
+    --text: #f5f7ff;
+    --muted: #9ba8c5;
+    --accent: #8b7bff;
+    --accent2: #32d6e8;
+    --border: rgba(255,255,255,.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body.light {
+    --bg: #f1f4fc;
+    --card: #ffffff;
+    --text: #172039;
+    --muted: #65708a;
+    --border: rgba(20,30,60,.12);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    background: #7558ff;
+    filter: blur(150px);
+    opacity: .18;
+    top: -120px;
+    left: -100px;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: #00c9d9;
+    filter: blur(150px);
+    opacity: .12;
+    right: -100px;
+    bottom: -100px;
+    pointer-events: none;
+}
+
+button, a { font: inherit; }
+button { cursor: pointer; }
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+    max-width: 1150px;
+    margin: auto;
+    padding: 17px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    white-space: nowrap;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.nav-links button {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    transition: .25s;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+    background: var(--card);
+    color: var(--accent);
+}
+
+.theme-btn {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 45px 24px 70px;
+    position: relative;
+    z-index: 1;
+}
+
+.page {
+    display: none;
+    animation: enter .4s ease;
+}
+
+.page.active { display: block; }
+
+@keyframes enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+    min-height: 490px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 45px;
+}
+
+.tag {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--accent2);
+    font-size: 11px;
+    border-radius: 50px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.15;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+}
+
+.gradient {
+    background: linear-gradient(100deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p, .description {
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn {
+    border: 0;
+    padding: 13px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 12px;
+    transition: .25s;
+}
+
+.btn:hover { transform: translateY(-3px); }
+
+.btn-primary {
+    background: linear-gradient(100deg, var(--accent), #6555e8);
+    color: white;
+    box-shadow: 0 8px 25px #7660ff30;
+}
+
+.btn-secondary {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.profile-art {
+    min-height: 320px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.avatar {
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 100px;
+    font-weight: 800;
+    background: linear-gradient(145deg, #8979ff, #20d5dc);
+    color: #fff;
+    border: 8px solid var(--card);
+    box-shadow: 0 0 70px #8273ff38;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.orbit {
+    position: absolute;
+    width: 290px;
+    height: 290px;
+    border: 1px dashed var(--accent);
+    opacity: .5;
+    border-radius: 50%;
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.float-label {
+    position: absolute;
+    padding: 10px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 12px;
+    box-shadow: 0 10px 35px #0002;
+}
+
+.label-one { top: 25px; right: 0; }
+.label-two { bottom: 30px; left: 0; }
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.stat {
+    padding: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 17px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.stat span { font-size: 11px; color: var(--muted); }
+
+.section-head { margin-bottom: 28px; }
+
+.eyebrow {
+    color: var(--accent2);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 9px;
+}
+
+.section-head h2 {
+    font-size: clamp(27px, 4vw, 39px);
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.section-head p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 23px;
+    border-radius: 18px;
+    transition: .25s;
+    min-width: 0;
+}
+
+.card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.card-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    background: #8171ff1b;
+    font-size: 22px;
+    margin-bottom: 17px;
+}
+
+.card h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+}
+
+.info-row:last-child { border-bottom: 0; }
+.info-row span:first-child { color: var(--muted); }
+.info-row span:last-child {
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.timeline {
+    border-left: 2px solid var(--accent);
+    padding-left: 22px;
+    margin: 12px 0 0 8px;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 28px;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-item::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: var(--accent2);
+    border-radius: 50%;
+    position: absolute;
+    left: -28px;
+    top: 5px;
+    box-shadow: 0 0 15px var(--accent2);
+}
+
+.timeline-item h3 { font-size: 14px; margin-bottom: 6px; }
+.timeline-item p { font-size: 12px; color: var(--muted); line-height: 1.8; }
+
+.skill { margin: 20px 0; }
+
+.skill-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 9px;
+}
+
+.skill-title span:last-child { color: var(--muted); }
+
+.bar {
+    height: 7px;
+    background: var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar div {
+    height: 100%;
+    width: var(--value);
+    border-radius: 20px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+.quote {
+    border-left: 3px solid var(--accent);
+    padding: 17px 20px;
+    margin-top: 20px;
+    background: #8273ff0d;
+    border-radius: 0 12px 12px 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.contact-link {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    color: var(--text);
+    text-decoration: none;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+    overflow-wrap: anywhere;
+}
+
+.contact-link:last-child { border-bottom: 0; }
+.contact-link .emoji { font-size: 23px; }
+.contact-link small { color: var(--muted); display: block; font-size: 10px; }
+.contact-link strong { font-size: 12px; }
+
+footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 25px 15px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 2;
+}
+
+footer span { color: var(--accent); }
+
+.mobile-nav { display: none; }
+
+@media(max-width: 760px) {
+    .nav-inner { padding: 13px 15px; }
+
+    .nav-links {
+        position: fixed;
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        z-index: 200;
+        justify-content: space-around;
+        gap: 0;
+        padding: 9px 3px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: 0 10px 35px #0003;
+    }
+
+    .nav-links button {
+        font-size: 10px;
+        padding: 10px 8px;
+    }
+
+    .container { padding: 32px 18px 100px; }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding-top: 10px;
+    }
+
+    .hero h1 { letter-spacing: -1px; }
+    .profile-art { min-height: 280px; grid-row: 1; }
+    .avatar { width: 175px; height: 175px; font-size: 75px; }
+    .orbit { width: 235px; height: 235px; }
+    .label-one { right: 2px; top: 20px; }
+    .label-two { left: 2px; bottom: 15px; }
+    .stats { gap: 9px; }
+    .stat { padding: 14px 10px; }
+    .stat strong { font-size: 17px; }
+    .stat span { font-size: 10px; }
+    .grid { grid-template-columns: 1fr; }
+    .panel { padding: 19px; }
+    .info-row { grid-template-columns: 105px 1fr; }
+    footer { padding-bottom: 100px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-inner">
+        <div class="logo">Rez<span>.</span></div>
+
+        <nav class="nav-links" aria-label="Navigasi utama">
+            <button class="active" data-page="home">Home</button>
+            <button data-page="biodata">Biodata</button>
+            <button data-page="about">Tentang</button>
+            <button data-page="hobi">Hobi</button>
+            <button data-page="impian">Dreams</button>
+            <button data-page="kontak">Kontak</button>
+        </nav>
+
+        <button class="theme-btn" id="themeBtn" aria-label="Ganti tema"
+        title="Ganti tema">☀️</button>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- HALAMAN 1: HOME -->
+    <section class="page active" id="home">
+        <div class="hero">
+            <div>
+                <div class="tag">✦ WEBSITE PERSONAL SAYA</div>
+                <h1>Halo, saya<br><span class="gradient">Rezky.</span></h1>
+
+                <p>
+                    Selamat datang di website biodata pribadi saya.
+                    Di sini kamu bisa mengenal saya lebih dekat,
+                    mulai dari biodata, cerita tentang saya, hobi,
+                    sampai impian yang ingin saya capai.
+                </p>
+
+                <div class="buttons">
+                    <button class="btn btn-primary" data-go="biodata">
+                        Kenali Saya ↗
+                    </button>
+                    <button class="btn btn-secondary" data-go="about">
+                        Tentang Saya
+                    </button>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <strong>01</strong>
+                        <span>Personal</span>
+                    </div>
+                    <div class="stat">
+                        <strong>∞</strong>
+                        <span>Impian</span>
+                    </div>
+                    <div class="stat">
+                        <strong>✦</strong>
+                        <span>Semangat</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-art">
+                <div class="orbit"></div>
+                <div class="avatar">R</div>
+                <div class="float-label label-one">👋 Hai, salam kenal!</div>
+                <div class="float-label label-two">🚀 Terus berkembang</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HALAMAN 2: BIODATA -->
+    <section class="page" id="biodata">
+        <div class="section-head">
+            <div class="eyebrow">01 — PROFILE</div>
+            <h2>Biodata <span class="gradient">Pribadi</span></h2>
+            <p>Informasi dasar tentang diri saya.</p>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <div class="card-icon">👤</div>
+                <h3 style="margin-bottom:12px">Data Diri</h3>
+
+                <div class="info-row">
+                    <span>Nama</span>
+                    <span>Rezky Nur Azmi Yudiana</span>
+                </div>
+                <div class="info-row">
+                    <span>Nama panggilan</span>
+                    <span>Rezky/Eky/Azmi</span>
+                </div>
+                <div class="info-row">
+                    <span>Tempat lahir</span>
+                    <span>Majalengka</span>
+                </div>
+                <div class="info-row">
+                    <span>Tanggal lahir</span>
+                    <span>02 November 2008</span>
+                </div>
+                <div class="info-row">
+                    <span>Jenis kelamin</span>
+                    <span>Laki-laki</span>
+                </div>
+                <div class="info-row">
+                    <span>Alamat</span>
+                    <span>not found</span>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="card-icon">🎓</div>
+                <h3 style="margin-bottom:12px">Informasi Tambahan</h3>
+
+                <div class="info-row">
+                    <span>Status</span>
+                    <span>Just waiting ferrari Champion</span>
+                </div>
+                <div class="info-row">
+                    <span>Sekolah</span>
+                    <span>SMKN 1 TALAGA</span>
+                </div>
+                <div class="info-row">
+                    <span>Kelas</span>
+                    <span>12</span>
+                </div>
+                <div class="info-row">
+                    <span>Jurusan</span>
+                    <span>Rekayasa Perangkat Lunak</span>
+                </div>
+                <div class="info-row">
+                    <span>Kewarganegaraan</span>
+                    <span>Indonesia</span>
+                </div>
+
+                <div class="quote">
+                    "Menjadi diri sendiri adalah awal dari perjalanan
+                    untuk menjadi lebih baik."
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-primary" data-go="about">
+                Lanjut: Tentang Saya →
+            </button>
+        </div>
+    </section>
+
+    <!-- HALAMAN 3: TENTANG SAYA -->
+    <section class="page" id="about">
+        <div class="section-head">
+            <div class="eyebrow">02 — ABOUT ME</div>
+            <h2>Cerita <span class="gradient">Tentang Saya</span></h2>
+            <p>Sedikit cerita tentang karakter dan perjalanan saya.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <h3>Siapa Saya?</h3>
+                <p>
+                    Saya Rezky. Saya adalah seseorang yang ingin Ferarri juara WDC & WCC
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🧠</div>
+                <h3>Kepribadian</h3>
+                <p>
+                    Humoris,Pemarah sekaligus Penyabar
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💪</div>
+                <h3>Kelebihan Saya</h3>
+                <p>
+                    Saya sangat cepat beradaptasi dalam Hal apapun, Paham dengan sekali melihat.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌱</div>
+                <h3>Prinsip Hidup</h3>
+                <p>
+                    Tidak ada yang TIDAK MUNGKIN bagi saya.
+                </p>
+            </div>
+        </div>
+
+        <div class="panel" style="margin-top:18px">
+            <div class="eyebrow">MY JOURNEY</div>
+            <h3 style="margin-bottom:22px">Perjalanan Saya</h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>🌟 Masa Lalu</h3>
+                    <p>
+                        Seorang anak yang bercita-cita bermain di panggung Esport
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <h3>🔥 Saat Ini</h3>
+                    <p>
+                        Seorang Remaja yang sedang menghadapi Masa akhir sekolahnya.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <h3>🚀 Masa Depan</h3>
+                    <p>
+                        Sukses dan Menjadi kepala keluarga yang penuh Tanggung jawab.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HALAMAN 4: HOBI -->
+    <section class="page" id="hobi">
+        <div class="section-head">
+            <div class="eyebrow">03 — INTERESTS</div>
+            <h2>Hobi & <span class="gradient">Kesukaan</span></h2>
+            <p>Hal-hal yang bisa mengisi waktu luang dan membuat saya senang.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🏎️</div>
+                <h3>F1</h3>
+                <p>TIFOSI garis keras Next time is our time its real!!!</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Teknologi & Coding</h3>
+                <p>
+                    Sangat menikmati saat belajar coding dan menghadapi eror #RPL
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎧</div>
+                <h3>Musik</h3>
+                <h3>
+                    TOP 5 Musik of all time
+                </h3>
+                <p>
+                    1. End Of Beginning
+                </p>
+                <p>
+                    2. Cry
+                </p>
+                <p>
+                    3. Blank Space
+                </p>
+                <p>
+                    4. Summertime sadness
+                </p>
+                <p>
+                    5. Abadi
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎮</div>
+                <h3>Gaming</h3>
+                <p>
+                    Saya bermain beberapa game seperti : Free fire, Mobile legend, PUBGM, Efootball, Monoposto, DLL.
+                </p>
+            </div>
+        </div>
+
+        <div class="panel" style="margin-top:18px">
+            <h3>Hal yang Ingin Saya Pelajari</h3>
+            <p class="description" style="margin-top:9px">
+                Setiap hari adalah kesempatan untuk menambah pengetahuan,
+                meningkatkan kreativitas, dan mencoba sesuatu yang baru.
+            </p>
+
+            <div class="skill">
+                <div class="skill-title">
+                    <span>HTML & CSS</span>
+                    <span>Dalam proses belajar</span>
+                </div>
+                <div class="bar"><div style="--value:90%"></div></div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-title">
+                    <span>JavaScript</span>
+                    <span>Dalam proses belajar</span>
+                </div>
+                <div class="bar"><div style="--value:35%"></div></div>
+            </div>
+
+            <p class="description" style="font-size:10px">
+                Catatan: indikator di atas akan bertambah jika saya Terus belajar.
+            </p>
+        </div>
+    </section>
+
+    <!-- HALAMAN 5: IMPIAN -->
+    <section class="page" id="impian">
+        <div class="section-head">
+            <div class="eyebrow">04 — MY DREAMS</div>
+            <h2>Impian & <span class="gradient">Tujuan</span></h2>
+            <p>Tempat untuk menuliskan target dan cita-cita saya.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Target Terdekat</h3>
+                <p>
+                    Lulus UKK Industri dan Mendapatkan nilai maximal di TKA
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🏆</div>
+                <h3>Cita-cita</h3>
+                <p>
+                    Software Engineer | Front-Ed developer | UI/UX Designer
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3>Pengembangan Diri</h3>
+                <p>
+                    Menambah pengetahuan, meningkatkan keterampilan,
+                    dan terus belajar dari pengalaman.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <h3>Harapan</h3>
+                <p>
+                    Menjadi versi diri sendiri yang jauh lebih baik dari "SEBELUMNYA"
+                </p>
+            </div>
+        </div>
+
+        <div class="quote">
+            "Tidak harus menjadi sempurna untuk memulai.
+            Mulailah, lalu terus berkembang."
+        </div>
+    </section>
+
+    <!-- HALAMAN 6: KONTAK -->
+    <section class="page" id="kontak">
+        <div class="section-head">
+            <div class="eyebrow">05 — GET IN TOUCH</div>
+            <h2>Hubungi <span class="gradient">Saya</span></h2>
+            <p>Bagian kontak personal. Ganti data contoh dengan informasi milikmu.</p>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <h3 style="margin-bottom:15px">Informasi Kontak</h3>
+
+                <div class="contact-link">
+                    <span class="emoji">📧</span>
+                    <div>
+                        <small>Email</small>
+                        <strong>rezkuy@gmail.com</strong>
+                    </div>
+                </div>
+
+                <div class="contact-link">
+                    <span class="emoji">📱</span>
+                    <div>
+                        <small>Instagram</small>
+                        <strong>@azmidelferrari</strong>
+                    </div>
+                </div>
+
+                <div class="contact-link">
+                    <span class="emoji">🎵</span>
+                    <div>
+                        <small>TikTok</small>
+                        <strong>@skywee</strong>
+                    </div>
+                </div>
+
+                <div class="contact-link">
+                    <span class="emoji">📍</span>
+                    <div>
+                        <small>Lokasi</small>
+                        <strong>Kota Angin</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="card-icon">💌</div>
+                <h3>Pesan untuk Pengunjung</h3>
+                <p class="description" style="margin-top:12px">
+                    Terima kasih sudah mengunjungi website biodata saya.
+                    Semoga kamu bisa mengenal saya sedikit lebih dekat
+                    melalui halaman ini.
+                </p>
+
+                <div class="quote">
+                    Website ini adalah ruang kecil untuk
+                    memperkenalkan diri, berbagi cerita,
+                    dan menyimpan perjalanan saya.
+                </div>
+
+                <div class="buttons">
+                    <button class="btn btn-primary" data-go="home">
+                        ↩ Kembali ke Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© <span id="year"></span> <span>WEB BIO DATA REZKY</span></p>
+    <p>Dibuat dengan HTML, CSS & JavaScript</p>
+    <p>One file. Many stories.</p>
+</footer>
+
+<script>
+// =====================================
+// NAVIGASI ANTAR HALAMAN
+// =====================================
+
+const pages = document.querySelectorAll('.page');
+const navButtons = document.querySelectorAll('[data-page]');
+
+function showPage(pageId) {
+    const target = document.getElementById(pageId);
+
+    if (!target) return;
+
+    pages.forEach(page => page.classList.remove('active'));
+    target.classList.add('active');
+
+    navButtons.forEach(button => {
+        button.classList.toggle(
+            'active',
+            button.dataset.page === pageId
+        );
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + pageId);
+}
+
+// Klik menu navbar
+navButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        showPage(button.dataset.page);
+    });
+});
+
+// Klik tombol navigasi di dalam halaman
+document.querySelectorAll('[data-go]').forEach(button => {
+    button.addEventListener('click', () => {
+        showPage(button.dataset.go);
+    });
+});
+
+// Mendukung tombol Back/Forward browser
+window.addEventListener('hashchange', () => {
+    const pageId = location.hash.slice(1) || 'home';
+    showPage(document.getElementById(pageId) ? pageId : 'home');
+});
+
+// Buka halaman sesuai hash ketika pertama kali dibuka
+const firstPage = location.hash.slice(1);
+if (firstPage && document.getElementById(firstPage)) {
+    showPage(firstPage);
+}
+
+// =====================================
+// MODE TERANG / GELAP
+// =====================================
+
+const themeBtn = document.getElementById('themeBtn');
+
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+
+    const isLight = document.body.classList.contains('light');
+    themeBtn.textContent = isLight ? '🌙' : '☀️';
+    themeBtn.title = isLight ? 'Gunakan mode gelap' : 'Gunakan mode terang';
+});
+
+// =====================================
+// TAHUN OTOMATIS
+// =====================================
+
+document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
